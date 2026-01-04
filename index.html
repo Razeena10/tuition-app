@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabic & Urdu Tuition Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-graduation-cap"></i> Arabic & Urdu Tuition Management</h1>
+            <div class="header-actions">
+                <button id="addStudentBtn" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Add Student
+                </button>
+                <button id="exportBtn" class="btn btn-secondary">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="students">
+                <i class="fas fa-users"></i> Students
+            </button>
+            <button class="tab-btn" data-tab="attendance">
+                <i class="fas fa-calendar-check"></i> Attendance
+            </button>
+            <button class="tab-btn" data-tab="fees">
+                <i class="fas fa-money-bill-wave"></i> Fees
+            </button>
+            <button class="tab-btn" data-tab="homework">
+                <i class="fas fa-book"></i> Homework
+            </button>
+            <button class="tab-btn" data-tab="reports">
+                <i class="fas fa-chart-bar"></i> Reports
+            </button>
+        </nav>
+
+        <main>
+            <!-- Students Tab -->
+            <div id="students" class="tab-content active">
+                <div class="search-bar">
+                    <input type="text" id="studentSearch" placeholder="Search students...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="studentsList" class="students-grid"></div>
+            </div>
+
+            <!-- Attendance Tab -->
+            <div id="attendance" class="tab-content">
+                <div class="attendance-controls">
+                    <input type="date" id="attendanceDate">
+                    <button id="markAllAttendanceBtn" class="btn btn-primary">Mark Attendance</button>
+                    <button id="toggleViewBtn" class="btn btn-secondary">Toggle View</button>
+                </div>
+                <div id="attendanceList" class="attendance-grid"></div>
+                <div id="attendanceTable" class="attendance-table-container" style="display: none;"></div>
+            </div>
+
+            <!-- Fees Tab -->
+            <div id="fees" class="tab-content">
+                <div class="fees-controls">
+                    <select id="feeStudent">
+                        <option value="">Select Student</option>
+                    </select>
+                    <input type="number" id="feeAmount" placeholder="Amount">
+                    <select id="paymentMode">
+                        <option value="">Payment Mode</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Online">Online</option>
+                    </select>
+                    <input type="date" id="feeDate">
+                    <button id="recordPaymentBtn" class="btn btn-primary">Record Payment</button>
+                </div>
+                <div id="feesList" class="fees-grid"></div>
+            </div>
+
+            <!-- Homework Tab -->
+            <div id="homework" class="tab-content">
+                <div class="homework-controls">
+                    <input type="date" id="homeworkDate">
+                    <button id="markAllHomeworkBtn" class="btn btn-primary">Mark Homework Status</button>
+                </div>
+                <div id="homeworkTable" class="homework-table-container"></div>
+            </div>
+
+            <!-- Reports Tab -->
+            <div id="reports" class="tab-content">
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Overall Statistics</h3>
+                        <div id="overallStats"></div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Monthly Summary</h3>
+                        <div id="monthlyStats"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add Student</h2>
+            <form id="studentForm">
+                <div class="form-group">
+                    <label>Student Name (English)</label>
+                    <input type="text" id="studentNameEn" required>
+                </div>
+                <div class="form-group">
+                    <label>Student Name (Urdu)</label>
+                    <input type="text" id="studentNameUrdu" dir="rtl">
+                </div>
+                <div class="form-group">
+                    <label>Student Name (Arabic)</label>
+                    <input type="text" id="studentNameArabic" dir="rtl">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="studentAge" min="5" max="25">
+                    </div>
+                    <div class="form-group">
+                        <label>Class</label>
+                        <input type="text" id="studentClass">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select id="studentSubject" required>
+                        <option value="Arabic">Arabic</option>
+                        <option value="Urdu">Urdu</option>
+                        <option value="Both">Both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Parent Contact</label>
+                    <input type="tel" id="parentContact" required>
+                </div>
+                <div class="form-group">
+                    <label>Monthly Fee</label>
+                    <input type="number" id="monthlyFee" required>
+                </div>
+                <div class="form-group">
+                    <label>Date of Joining</label>
+                    <input type="date" id="joiningDate" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('studentModal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Mark Attendance</h2>
+            <div id="attendanceChecklist"></div>
+            <div class="form-actions">
+                <button id="saveAttendanceBtn" class="btn btn-primary">Save Attendance</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal('attendanceModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="homeworkModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Mark Homework Status</h2>
+            <div id="homeworkChecklist"></div>
+            <div class="form-actions">
+                <button id="saveHomeworkBtn" class="btn btn-primary">Save Homework Status</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal('homeworkModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="studentRecordModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close">&times;</span>
+            <h2 id="studentRecordTitle">Student Record</h2>
+            <div id="studentRecordContent"></div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('studentRecordModal')">Close</button>
+                <button type="button" class="btn btn-primary" onclick="exportStudentRecord()">Export Record</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

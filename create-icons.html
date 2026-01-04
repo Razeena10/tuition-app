@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create App Icons</title>
+</head>
+<body>
+    <canvas id="canvas192" width="192" height="192" style="border: 1px solid #ccc; margin: 10px;"></canvas>
+    <canvas id="canvas512" width="512" height="512" style="border: 1px solid #ccc; margin: 10px;"></canvas>
+    
+    <script>
+        // Create 192x192 icon
+        const canvas192 = document.getElementById('canvas192');
+        const ctx192 = canvas192.getContext('2d');
+        
+        // Background gradient
+        const gradient192 = ctx192.createLinearGradient(0, 0, 192, 192);
+        gradient192.addColorStop(0, '#667eea');
+        gradient192.addColorStop(1, '#764ba2');
+        ctx192.fillStyle = gradient192;
+        ctx192.fillRect(0, 0, 192, 192);
+        
+        // Add graduation cap icon (simplified)
+        ctx192.fillStyle = 'white';
+        ctx192.font = 'bold 80px Arial';
+        ctx192.textAlign = 'center';
+        ctx192.fillText('🎓', 96, 120);
+        
+        // Create 512x512 icon
+        const canvas512 = document.getElementById('canvas512');
+        const ctx512 = canvas512.getContext('2d');
+        
+        // Background gradient
+        const gradient512 = ctx512.createLinearGradient(0, 0, 512, 512);
+        gradient512.addColorStop(0, '#667eea');
+        gradient512.addColorStop(1, '#764ba2');
+        ctx512.fillStyle = gradient512;
+        ctx512.fillRect(0, 0, 512, 512);
+        
+        // Add graduation cap icon (simplified)
+        ctx512.fillStyle = 'white';
+        ctx512.font = 'bold 200px Arial';
+        ctx512.textAlign = 'center';
+        ctx512.fillText('🎓', 256, 320);
+        
+        // Download function
+        function downloadIcon(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Auto-download icons
+        setTimeout(() => {
+            downloadIcon(canvas192, 'icon-192.png');
+            setTimeout(() => {
+                downloadIcon(canvas512, 'icon-512.png');
+            }, 1000);
+        }, 1000);
+    </script>
+</body>
+</html>

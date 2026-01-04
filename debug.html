@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug localStorage</title>
+</head>
+<body>
+    <h1>localStorage Debug</h1>
+    <button onclick="showData()">Show All Data</button>
+    <button onclick="clearData()">Clear All Data</button>
+    <pre id="output"></pre>
+    
+    <script>
+        function showData() {
+            const output = document.getElementById('output');
+            const data = {
+                students: JSON.parse(localStorage.getItem('students') || '[]'),
+                attendance: JSON.parse(localStorage.getItem('attendance') || '[]'),
+                fees: JSON.parse(localStorage.getItem('fees') || '[]'),
+                homework: JSON.parse(localStorage.getItem('homework') || '[]')
+            };
+            
+            output.textContent = JSON.stringify(data, null, 2);
+        }
+        
+        function clearData() {
+            if(confirm('Clear all data?')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+        
+        showData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,841 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: #4a5568;
+    font-size: 1.8rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e0;
+}
+
+.tabs {
+    display: flex;
+    background: white;
+    border-radius: 15px;
+    padding: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.tab-btn:hover:not(.active) {
+    background: #f7fafc;
+}
+
+main {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-height: 500px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.search-bar {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.search-bar i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+}
+
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.student-card {
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.student-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.student-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.student-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.student-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 2px;
+}
+
+.info-value {
+    color: #718096;
+}
+
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.attendance-controls, .fees-controls, .homework-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.attendance-controls input, .attendance-controls select,
+.fees-controls input, .fees-controls select,
+.homework-controls input, .homework-controls select {
+    padding: 10px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.attendance-grid, .fees-grid, .homework-grid {
+    display: grid;
+    gap: 15px;
+}
+
+.attendance-item, .fee-item, .homework-item {
+    background: #f7fafc;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #48bb78;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fee-item {
+    border-left-color: #ed8936;
+}
+
+.homework-item {
+    border-left-color: #9f7aea;
+}
+
+.item-info h4 {
+    margin-bottom: 5px;
+    color: #2d3748;
+}
+
+.item-info p {
+    color: #718096;
+    font-size: 14px;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-present {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status-absent {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+.status-paid {
+    background: #bee3f8;
+    color: #2a4365;
+}
+
+.status-pending {
+    background: #feebc8;
+    color: #744210;
+}
+
+.status-completed {
+    background: #e9d8fd;
+    color: #44337a;
+}
+
+.status-incomplete {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.report-card {
+    background: #f7fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border-top: 4px solid #667eea;
+}
+
+.report-card h3 {
+    margin-bottom: 15px;
+    color: #2d3748;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-value {
+    font-weight: 700;
+    color: #667eea;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .students-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .attendance-controls, .fees-controls, .homework-controls {
+        flex-direction: column;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+        .student-card, .attendance-item, .fee-item, .homework-item {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .header-actions, .tabs, .search-bar, .attendance-controls, .fees-controls, .homework-controls {
+                display: none;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+            
+            .student-card, .attendance-item, .fee-item, .homework-item {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+            }
+        }
+
+        /* Table Styles */
+        .attendance-table, .homework-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .attendance-table th, .homework-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .attendance-table td, .homework-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .attendance-table tr:hover, .homework-table tr:hover {
+            background: #f7fafc;
+        }
+
+        .attendance-table tr:last-child td, .homework-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Modal Checklist Styles */
+        .attendance-student-item, .homework-student-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .student-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .student-info strong {
+            color: #2d3748;
+            font-size: 16px;
+        }
+
+        .student-subject {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .attendance-status, .homework-status {
+            display: flex;
+            gap: 15px;
+        }
+
+        .attendance-status label, .homework-status label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .attendance-status input[type="radio"], 
+        .homework-status input[type="radio"] {
+            margin: 0;
+        }
+
+        /* Table Container Styles */
+        .attendance-table-container, .homework-table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .status-pending {
+            background: #feebc8;
+            color: #744210;
+        }
+/* Payment Mode Styles */
+.payment-mode {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.payment-cash {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.payment-online {
+    background: #bee3f8;
+    color: #2a4365;
+}
+
+/* Homework Status Styles */
+.status-done {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status-not-done {
+    background: #fed7d7;
+    color: #742a2a;
+}
+.btn-success {
+    background: #48bb78;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #38a169;
+}
+
+/* Student Record Modal Styles */
+.student-record-section {
+    margin-bottom: 25px;
+    background: #f7fafc;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.student-record-section h4 {
+    margin-bottom: 15px;
+    color: #2d3748;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.record-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.record-table th {
+    background: #e2e8f0;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.record-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.record-table tr:last-child td {
+    border-bottom: none;
+}
+
+.record-table tr:hover {
+    background: #f7fafc;
+}
+
+.student-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 3px solid #667eea;
+}
+
+.summary-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #667eea;
+    display: block;
+}
+
+.summary-label {
+    font-size: 14px;
+    color: #718096;
+    margin-top: 5px;
+}
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+    
+    header {
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    
+    .header-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .tabs {
+        padding: 3px;
+    }
+    
+    .tab-btn {
+        padding: 10px 5px;
+        font-size: 12px;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .tab-btn i {
+        font-size: 16px;
+    }
+    
+    main {
+        padding: 15px;
+    }
+    
+    .student-card {
+        padding: 15px;
+    }
+    
+    .student-name {
+        font-size: 1rem;
+    }
+    
+    .student-actions {
+        flex-direction: column;
+        gap: 3px;
+    }
+    
+    .btn-small {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+    
+    .attendance-controls, .fees-controls, .homework-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .attendance-controls input, .attendance-controls select,
+    .fees-controls input, .fees-controls select,
+    .homework-controls input, .homework-controls select {
+        width: 100%;
+    }
+    
+    .modal-content {
+        margin: 5% auto;
+        width: 95%;
+        padding: 20px;
+        max-height: 85vh;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .student-summary {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .summary-value {
+        font-size: 18px;
+    }
+    
+    .record-table {
+        font-size: 12px;
+    }
+    
+    .record-table th, .record-table td {
+        padding: 6px 4px;
+    }
+    
+    .attendance-student-item, .homework-student-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .attendance-status, .homework-status {
+        width: 100%;
+        justify-content: space-around;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .btn, .tab-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .btn-small {
+        min-height: 36px;
+        min-width: 36px;
+    }
+    
+    input, select, textarea {
+        min-height: 44px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .student-card:hover {
+        transform: none; /* Disable hover effects on touch */
+    }
+}
+
+/* PWA specific styles */
+@media (display-mode: standalone) {
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    
+    header {
+        padding-top: calc(20px + env(safe-area-inset-top));
+    }
+}
+
+/* Install button styles */
+#installBtn {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
